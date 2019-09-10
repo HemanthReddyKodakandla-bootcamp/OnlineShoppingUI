@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoppingui/datagetting.dart';
+import 'package:flutter_shoppingui/view/bags_view.dart';
+import 'package:flutter_shoppingui/view/shoes_view.dart';
 
 class ShoppingHomeView extends StatefulWidget {
   @override
@@ -15,14 +17,12 @@ class _ShoppingHomeViewState extends State<ShoppingHomeView> {
     Data().getBagsData(context);
     Data().getShoesData(context);
     Data().getJacketsData(context);
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Container(),
+    return Container(
+      color: Colors.yellow,
     );
   }
 }

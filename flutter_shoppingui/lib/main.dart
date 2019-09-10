@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shoppingui/view/shopping_home.dart';
+import 'package:flutter_shoppingui/view/home.dart';
 
 void main() => runApp(ShoppingUI());
 
@@ -12,7 +12,7 @@ class ShoppingUI extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ShoppingHomeView(),
+      home: HomeView(),
     );
   }
 }
