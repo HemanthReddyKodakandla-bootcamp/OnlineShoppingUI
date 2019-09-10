@@ -6,25 +6,25 @@ class Data{
   var jacketsData;
   var shoesData;
 
-  getBagsData(BuildContext context) async{
+  Future<List> getBagsData(BuildContext context) async{
         var data = await DefaultAssetBundle.of(context).loadString("assets/bags.json");
-        bagsData = jsonDecode(data);
+        bagsData =  jsonDecode(data);
         print('bags data $bagsData');
-
+        return bagsData;
   }
 
-  getShoesData(BuildContext context) async{
+  Future<List> getShoesData(BuildContext context) async{
     var data = await DefaultAssetBundle.of(context).loadString("assets/shoes.json");
-    shoesData = jsonDecode(data);
+    shoesData =  jsonDecode(data);
     print('shoes data $shoesData');
-
+    return shoesData;
   }
 
-  getJacketsData(BuildContext context) async{
+  Future<List> getJacketsData(BuildContext context) async{
     var data = await DefaultAssetBundle.of(context).loadString("assets/jackets.json");
-    jacketsData = jsonDecode(data);
+    jacketsData =  jsonDecode(data);
     print('jackets data $jacketsData');
-
+    return jacketsData;
   }
 
 }

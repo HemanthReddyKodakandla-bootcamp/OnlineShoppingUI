@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoppingui/datagetting.dart';
 import 'package:flutter_shoppingui/view/bags_view.dart';
+import 'package:flutter_shoppingui/view/favorites.dart';
 import 'package:flutter_shoppingui/view/jackets_view.dart';
+import 'package:flutter_shoppingui/view/profile.dart';
 import 'package:flutter_shoppingui/view/shoes_view.dart';
 import 'package:flutter_shoppingui/view/shopping_home.dart';
 
@@ -16,8 +18,8 @@ class _HomeViewState extends State<HomeView> {
   List<Widget> bottomWidgets = [
     ShoppingHomeView(),
     BagsView(),
-    ShoesView(),
-    JacketsView()
+    FavoritesView(),
+    MyProfilePage(),
   ];
 
   @override
@@ -39,39 +41,19 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.teal,
-        title: Text('Shopping',style: TextStyle(color: Colors.white,fontSize: 20.0,fontWeight: FontWeight.w600),),
-        centerTitle: true,
-      ),
       bottomNavigationBar: BottomNavigationBar(
-        items:const <BottomNavigationBarItem> [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              activeIcon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              activeIcon: Icon(Icons.home),
-            title: Text('Home'),
-
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              activeIcon: Icon(Icons.home),
-            title: Text('Home'),
-
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              activeIcon: Icon(Icons.home),
-            title: Text('Home'),
-          )
+        items: <BottomNavigationBarItem> [
+          _buildBottomNavigationItem(icon: Icon(Icons.home),title: "Home",),
+          _buildBottomNavigationItem(icon: Icon(Icons.chat_bubble_outline),title: "Chat"),
+          _buildBottomNavigationItem(icon: Icon(Icons.favorite_border),title: "Favorites"),
+          _buildBottomNavigationItem(icon: Icon(Icons.person_outline),title: "Account"),
         ],
         currentIndex: _selectedIndex,
-        backgroundColor: Colors.purple[300],
-        selectedItemColor: Colors.grey[300],
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.purple,
+        selectedIconTheme: IconThemeData(color: Colors.white,size: 30.0,),
+        selectedLabelStyle: TextStyle(color: Colors.white),
+        unselectedIconTheme: IconThemeData(color: Colors.black87,size: 25.0),
         onTap: _onItemTapped,
       ),
       body: Container(
@@ -79,4 +61,11 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
+  _buildBottomNavigationItem({Icon icon,String title}){
+    return  BottomNavigationBarItem(
+    icon: icon,
+    title: Text(title),
+);
+}
 }
