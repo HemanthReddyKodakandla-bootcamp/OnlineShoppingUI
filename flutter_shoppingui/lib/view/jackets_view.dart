@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoppingui/datagetting.dart';
+import 'package:flutter_shoppingui/view/favorites.dart';
 
 class JacketsView extends StatefulWidget {
   @override
@@ -35,7 +36,10 @@ class JacketsViewState extends State<JacketsView> {
             child: Material(
               child: InkWell(
                 onTap: (){
-
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return  FavoritesView(favorteData: jacketsData[index]);
+                      }));
                 },
                 child: new Card(
                     color: cardColor,
@@ -47,10 +51,13 @@ class JacketsViewState extends State<JacketsView> {
                       mainAxisSize: MainAxisSize.min,
                       verticalDirection: VerticalDirection.down,
                       children: <Widget>[
-                        new Image.network(
-                          jacketsData[index]['image'],
-                          height: 150.0,
-                          width: 100.0,),
+                        Hero(
+                          tag:jacketsData[index]['title'],
+                          child: new Image.network(
+                            jacketsData[index]['image'],
+                            height: 150.0,
+                            width: 100.0,),
+                        ),
                         new Padding(
                           padding: EdgeInsets.only(left: 10.0,top: 10.0),
                           child: new Column(
