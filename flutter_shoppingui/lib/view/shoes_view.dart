@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoppingui/datagetting.dart';
-import 'package:flutter_shoppingui/view/favorites.dart';
+import 'package:flutter_shoppingui/main.dart';
+
 
 class ShoesView extends StatefulWidget {
   @override
@@ -37,10 +38,7 @@ class _ShoesViewState extends State<ShoesView> {
               child: InkWell(
                 onTap: (){
                   Data().saveDataToFavoritesDataBase(shoesData[index]);
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return  FavoritesView();
-                      }));
+                  ShoppingUI.myTabbedPageKey.currentState.tabController.animateTo(2);
                 },
                 child: new Card(
                     color: cardColor,
