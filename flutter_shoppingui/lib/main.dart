@@ -11,8 +11,7 @@ class ShoppingUI extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          brightness: Brightness.light, fontFamily: 'Quicksand'),
       home: HomeView(),
     );
   }
