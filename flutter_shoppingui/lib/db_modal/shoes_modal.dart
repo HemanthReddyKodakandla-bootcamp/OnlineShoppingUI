@@ -1,4 +1,4 @@
-class Bags {
+class Shoes {
   String title;
   String description;
   String category;
@@ -6,7 +6,7 @@ class Bags {
   String image;
   String colors;
 
-  Bags(
+  Shoes(
       {
         this.title,
         this.description,
@@ -17,7 +17,7 @@ class Bags {
       }
       );
 
-  Bags.map(dynamic obj) {
+  Shoes.map(dynamic obj) {
     this.title = obj["title"];
     this.description = obj["description"];
     this.category = obj["category"];
@@ -41,7 +41,7 @@ class Bags {
 
   @override
   String toString() {
-    return 'Movies{'
+    return 'Shoes{'
         'title:$title,'
         'description:$description,'
         'category:$category,'

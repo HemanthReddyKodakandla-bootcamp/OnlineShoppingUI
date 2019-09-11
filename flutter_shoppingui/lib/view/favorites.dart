@@ -1,29 +1,122 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shoppingui/db_modal/favorites_helper.dart';
+import 'package:flutter_shoppingui/db_modal/favorites_modal.dart';
 
 class FavoritesView extends StatefulWidget {
-  var favorteData;
-  FavoritesView(
-      {Key key,
-        @required this.favorteData,
-      })
-      : super(key: key);
+
   @override
   _FavoritesViewState createState() => _FavoritesViewState();
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
+  List<Favorites> favoriteData = [] ;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getColorsWidget(widget.favorteData['colors']);
+    FavoritesDataBaseHelper().getUser().then((onValue){
+      setState(() {
+        favoriteData = onValue;
+      });
+        getFavorites(favoriteData);
+    });
   }
 
   List<Widget> colorWidget = new List();
+  List<Widget> favoriteWidget = new List();
+
+  getFavorites(var favorites){
+   for(var data in favorites){
+     getColorsWidget(jsonDecode(data.colors));
+     favoriteWidget.add(
+       Column(
+         children: <Widget>[
+           Container(
+             padding: EdgeInsets.only(top: 15.0),
+             alignment: Alignment.center,
+             child: Hero(
+               tag: data.title,
+               child: Image.network(data.image,
+                 height: MediaQuery.of(context).size.height*0.4,
+               ),
+             ),
+           ),
+           Container(
+             alignment: Alignment.centerLeft,
+             padding: EdgeInsets.only(top: 15.0),
+             child: Text(data.category,style: TextStyle(color: Colors.blue,fontSize: 15.0,fontWeight: FontWeight.w500),),
+           ),
+           Container(
+             padding: EdgeInsets.only(top: 10.0),
+             child: Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: <Widget>[
+                 Container(
+                   child: Text(data.description,style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w600,fontSize: 20.0,fontStyle: FontStyle.italic),),
+                 ),
+                 Container(
+                   padding: EdgeInsets.only(right: 10.0),
+                   child: Icon(Icons.favorite,size: 20.0,color: Colors.purple,),
+                 ),
+               ],
+             ),
+           ),
+           Container(
+             alignment: Alignment.centerLeft,
+             padding: EdgeInsets.only(top: 10.0),
+             child: Text(data.price,style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w600,fontSize: 18.0,fontStyle: FontStyle.italic)),
+           ),
+           _colorsWidgets(data.colors),
+           Container(
+             padding: EdgeInsets.only(top: 10.0),
+             child: Row(
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               children: <Widget>[
+                 RaisedButton(
+                   onPressed: (){
+                     debugPrint('button pressed');
+                   },
+                   color: Colors.purple,
+                   padding: EdgeInsets.fromLTRB(25.0,5.0,25.0,5.0),
+                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                   child: Text('ADD TO CART',style: TextStyle(color: Colors.white,fontSize: 15.0),),
+                 ),
+                 OutlineButton(
+                   onPressed: (){
+                     debugPrint('button pressed');
+                   },
+                   color: Colors.white,
+                   padding: EdgeInsets.fromLTRB(30.0,5.0,30.0,5.0),
+                   borderSide: BorderSide(
+                       color: Colors.purple,
+                       width: 2.0
+                   ),
+                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                   child: Text('BUY NOW',style: TextStyle(color: Colors.purple,fontSize: 15.0),),
+                 )
+               ],
+             ),
+           ),
+           SizedBox(
+             height: 10.0,
+           ),
+           Divider(
+             color: Colors.black,
+             thickness: 2.0,
+             height: 3.0,
+           )
+         ],
+       ),
+     );
+   }
+  }
 
   getColorsWidget(var colors){
+    colorWidget.clear();
     for(var color in colors){
      var containerColor = int.parse('0xFF'+color.toString().replaceAll('#', ''));
      colorWidget.add(
@@ -67,76 +160,10 @@ class _FavoritesViewState extends State<FavoritesView> {
       body: Container(
         padding: EdgeInsets.only(top: 10.0,left: 10.0,right: 10.0),
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 15.0),
-                alignment: Alignment.center,
-                child: Hero(
-                  tag: widget.favorteData['title'],
-                  child: Image.network(widget.favorteData['image'],
-                    height: MediaQuery.of(context).size.height*0.4,
-                  ),
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(top: 15.0),
-                child: Text(widget.favorteData['category'],style: TextStyle(color: Colors.blue,fontSize: 15.0,fontWeight: FontWeight.w500),),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      child: Text(widget.favorteData['description'],style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w600,fontSize: 20.0,fontStyle: FontStyle.italic),),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(right: 10.0),
-                      child: Icon(Icons.favorite,size: 20.0,color: Colors.purple,),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(top: 10.0),
-                child: Text(widget.favorteData['price'],style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w600,fontSize: 18.0,fontStyle: FontStyle.italic)),
-              ),
-              _colorsWidgets(widget.favorteData['colors']),
-              Container(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    RaisedButton(
-                        onPressed: (){
-                          debugPrint('button pressed');
-                        },
-                      color: Colors.purple,
-                      padding: EdgeInsets.fromLTRB(25.0,5.0,25.0,5.0),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                      child: Text('ADD TO CART',style: TextStyle(color: Colors.white,fontSize: 15.0),),
-                    ),
-                    OutlineButton(
-                        onPressed: (){
-                          debugPrint('button pressed');
-                        },
-                      color: Colors.white,
-                      padding: EdgeInsets.fromLTRB(30.0,5.0,30.0,5.0),
-                      borderSide: BorderSide(
-                        color: Colors.purple,
-                        width: 2.0
-                      ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                      child: Text('BUY NOW',style: TextStyle(color: Colors.purple,fontSize: 15.0),),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+            children: favoriteWidget,
+          )
         ),
       ),
     );

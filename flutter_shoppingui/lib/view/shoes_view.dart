@@ -36,9 +36,10 @@ class _ShoesViewState extends State<ShoesView> {
             child: Material(
               child: InkWell(
                 onTap: (){
+                  Data().saveDataToFavoritesDataBase(shoesData[index]);
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (BuildContext context) {
-                        return  FavoritesView(favorteData: shoesData[index]);
+                        return  FavoritesView();
                       }));
                 },
                 child: new Card(
@@ -52,9 +53,9 @@ class _ShoesViewState extends State<ShoesView> {
                       verticalDirection: VerticalDirection.down,
                       children: <Widget>[
                         Hero(
-                          tag:shoesData[index]['titie'],
+                          tag:shoesData[index].title,
                           child: new Image.network(
-                            shoesData[index]['image'],
+                            shoesData[index].image,
                             height: 150.0,
                             width: 100.0,),
                         ),
@@ -63,8 +64,8 @@ class _ShoesViewState extends State<ShoesView> {
                           child: new Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              new Text(shoesData[index]['title'],style: TextStyle(color: textColor,fontWeight: FontWeight.w700,fontSize: 18.0),),
-                              new Text(shoesData[index]['price'],style: TextStyle(color: textColor,fontWeight: FontWeight.w500,fontSize: 15.0)),
+                              new Text(shoesData[index].title,style: TextStyle(color: textColor,fontWeight: FontWeight.w700,fontSize: 18.0),),
+                              new Text(shoesData[index].price,style: TextStyle(color: textColor,fontWeight: FontWeight.w500,fontSize: 15.0)),
                             ],
                           ),
                         )

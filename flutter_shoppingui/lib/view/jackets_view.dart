@@ -36,9 +36,10 @@ class JacketsViewState extends State<JacketsView> {
             child: Material(
               child: InkWell(
                 onTap: (){
+                  Data().saveDataToFavoritesDataBase(jacketsData[index]);
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (BuildContext context) {
-                        return  FavoritesView(favorteData: jacketsData[index]);
+                        return  FavoritesView();
                       }));
                 },
                 child: new Card(
@@ -52,9 +53,9 @@ class JacketsViewState extends State<JacketsView> {
                       verticalDirection: VerticalDirection.down,
                       children: <Widget>[
                         Hero(
-                          tag:jacketsData[index]['title'],
+                          tag:jacketsData[index].title,
                           child: new Image.network(
-                            jacketsData[index]['image'],
+                            jacketsData[index].image,
                             height: 150.0,
                             width: 100.0,),
                         ),
@@ -63,8 +64,8 @@ class JacketsViewState extends State<JacketsView> {
                           child: new Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              new Text(jacketsData[index]['title'],style: TextStyle(color: textColor,fontWeight: FontWeight.w700,fontSize: 18.0),),
-                              new Text(jacketsData[index]['price'],style: TextStyle(color: textColor,fontWeight: FontWeight.w500,fontSize: 15.0)),
+                              new Text(jacketsData[index].title,style: TextStyle(color: textColor,fontWeight: FontWeight.w700,fontSize: 18.0),),
+                              new Text(jacketsData[index].price,style: TextStyle(color: textColor,fontWeight: FontWeight.w500,fontSize: 15.0)),
                             ],
                           ),
                         )
