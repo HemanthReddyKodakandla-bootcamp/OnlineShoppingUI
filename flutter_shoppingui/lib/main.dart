@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shoppingui/datagetting.dart';
 import 'package:flutter_shoppingui/view/bags_view.dart';
 import 'package:flutter_shoppingui/view/favorites.dart';
 import 'package:flutter_shoppingui/view/profile.dart';
@@ -40,6 +41,9 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
   void initState() {
     // TODO: implement initState
     super.initState();
+    Data().getShoesData(context);
+    Data().getBagsData(context);
+    Data().getJacketsData(context);
     tabController = TabController(
       length: 4,
       vsync: this,

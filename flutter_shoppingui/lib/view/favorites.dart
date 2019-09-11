@@ -159,14 +159,28 @@ class _FavoritesViewState extends State<FavoritesView> {
       backgroundColor: Colors.white,
       body: Container(
         padding: EdgeInsets.only(top: 10.0,left: 10.0,right: 10.0),
-        child: SingleChildScrollView(
+        child: _favorites(),
+      ),
+    );
+  }
+
+  _favorites(){
+    if(favoriteData.length == 0){
+      return Container(
+        alignment: Alignment.center,
+        child: Text(
+          "No Items In Wishlist Add Items",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize: 20.0),
+        ),
+      );
+    }
+    else{
+      return SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: favoriteWidget,
           )
-        ),
-      ),
-    );
+      );
+    }
   }
   _colorsWidgets(var colors){
     return Container(
