@@ -16,9 +16,11 @@ class _BagsViewState extends State<BagsView> {
     // TODO: implement initState
     super.initState();
     Data().getBagsData(context).then((onValue){
-      setState(() {
-        bagsData = onValue;
-      });
+     if(mounted){
+       setState(() {
+         bagsData = onValue;
+       });
+     }
     });
   }
   Color cardColor= Colors.white;

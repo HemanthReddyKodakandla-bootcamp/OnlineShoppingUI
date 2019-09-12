@@ -16,9 +16,11 @@ class JacketsViewState extends State<JacketsView> {
     // TODO: implement initState
     super.initState();
     Data().getJacketsData(context).then((onValue){
-      setState(() {
-        jacketsData = onValue;
-      });
+      if(mounted){
+        setState(() {
+          jacketsData = onValue;
+        });
+      }
     });
   }
   Color cardColor= Colors.white;

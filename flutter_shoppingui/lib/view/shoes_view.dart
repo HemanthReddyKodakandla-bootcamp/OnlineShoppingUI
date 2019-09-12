@@ -16,9 +16,11 @@ class _ShoesViewState extends State<ShoesView> {
     // TODO: implement initState
     super.initState();
     Data().getShoesData(context).then((onValue){
-      setState(() {
-        shoesData = onValue;
-      });
+      if(mounted){
+        setState(() {
+          shoesData = onValue;
+        });
+      }
     });
   }
   Color cardColor= Colors.white;

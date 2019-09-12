@@ -65,7 +65,7 @@ class Data{
     var jacketData = await DefaultAssetBundle.of(context).loadString("assets/jackets.json");
     jacketsData =  jsonDecode(jacketData);
     print('jackets data $jacketsData');
-    ShoesDataBaseHelper().getUser().then((data){
+    JacketsDataBaseHelper().getUser().then((data){
 
       if(data.length == 0){
         for(var jacket in jacketsData){
