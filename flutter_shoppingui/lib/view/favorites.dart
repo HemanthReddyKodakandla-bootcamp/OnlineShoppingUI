@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shoppingui/db_modal/favorites_helper.dart';
 import 'package:flutter_shoppingui/db_modal/favorites_modal.dart';
+import 'package:flutter_shoppingui/main.dart';
 
 class FavoritesView extends StatefulWidget {
 
@@ -145,7 +146,7 @@ class _FavoritesViewState extends State<FavoritesView> {
         backgroundColor: Colors.white,
         leading: GestureDetector(
           onTap: (){
-            Navigator.of(context).pop();
+            ShoppingUI.myTabbedPageKey.currentState.tabController.animateTo(0);
           },
               child: Icon(Icons.arrow_back_ios,size: 20.0,color: Colors.black,),
             ),

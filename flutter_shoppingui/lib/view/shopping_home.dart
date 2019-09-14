@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoppingui/datagetting.dart';
+import 'package:flutter_shoppingui/main.dart';
 import 'package:flutter_shoppingui/view/bags_view.dart';
 import 'package:flutter_shoppingui/view/jackets_view.dart';
 import 'package:flutter_shoppingui/view/shoes_view.dart';
@@ -38,7 +39,12 @@ class _ShoppingHomeViewState extends State<ShoppingHomeView> {
           actions: <Widget>[
             Padding(
                 padding: EdgeInsets.fromLTRB(2.0,2.0,10.0,2.0),
-            child:Icon(Icons.shopping_basket,color: Colors.black,size: 25.0,),
+            child:Material(
+                child: InkWell(
+                  onTap: (){
+                    ShoppingUI.myTabbedPageKey.currentState.tabController.animateTo(2);
+                  },
+                    child: Icon(Icons.shopping_basket,color: Colors.black,size: 25.0,))),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8.0,2.0,10.0,2.0),
@@ -52,9 +58,9 @@ class _ShoppingHomeViewState extends State<ShoppingHomeView> {
             unselectedLabelColor: Colors.grey[100],
             unselectedLabelStyle:TextStyle(color:Colors.grey[100],fontSize: 20.0,fontWeight: FontWeight.w900),
             tabs: [
-              Tab(child: Text('Bags',style: TextStyle(color:Colors.black,fontSize: 20.0,fontWeight: FontWeight.w900),)),
-              Tab(child: Text('Shoes',style: TextStyle(color:Colors.black,fontSize: 20.0,fontWeight: FontWeight.w900))),
-              Tab(child: Text('Jackets',style: TextStyle(color:Colors.black,fontSize: 20.0,fontWeight: FontWeight.w900))),
+              Tab(child: Text('Bags',style: TextStyle(color:Colors.blue,fontSize: 20.0,fontWeight: FontWeight.w900),)),
+              Tab(child: Text('Shoes',style: TextStyle(color:Colors.blue,fontSize: 20.0,fontWeight: FontWeight.w900))),
+              Tab(child: Text('Jackets',style: TextStyle(color:Colors.blue,fontSize: 20.0,fontWeight: FontWeight.w900))),
             ],
           ),
         ),

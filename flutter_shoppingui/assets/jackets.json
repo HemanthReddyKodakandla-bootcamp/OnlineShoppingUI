@@ -46,5 +46,53 @@
   ],
   "category": "jackets",
   "image": "https://source.unsplash.com/500x500/?jackets"
-}
+},
+  {
+    "title": "Lime jackets",
+    "description": "Blue jackets Hand Jacket",
+    "price": "$1299",
+    "colors": [
+      "#00ff00",
+      "#ff0000",
+      "#0000ff"
+    ],
+    "category": "jackets",
+    "image": "https://source.unsplash.com/500x500/?jackets"
+  },
+  {
+    "title": "Yellow jackets",
+    "description": "Red jackets Hand Jacket",
+    "price": "$1999",
+    "colors": [
+      "#00ff00",
+      "#ff0000",
+      "#0000ff"
+    ],
+    "category": "jackets",
+    "image": "https://source.unsplash.com/500x500/?jackets"
+  },
+  {
+    "title": "Indigo jackets",
+    "description": "Green jackets Hand Jacket",
+    "price": "$1299",
+    "colors": [
+      "#00ff00",
+      "#ff0000",
+      "#0000ff"
+    ],
+    "category": "jackets",
+    "image": "https://source.unsplash.com/500x500/?jackets"
+  },
+  {
+    "title": "Purple jackets",
+    "description": "HandJacket jackets Hand Jacket",
+    "price": "$1999",
+    "colors": [
+      "#00ff00",
+      "#ff0000",
+      "#0000ff"
+    ],
+    "category": "jackets",
+    "image": "https://source.unsplash.com/500x500/?jackets"
+  }
 ]

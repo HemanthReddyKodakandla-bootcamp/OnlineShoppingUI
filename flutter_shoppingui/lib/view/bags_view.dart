@@ -24,17 +24,19 @@ class _BagsViewState extends State<BagsView> {
     });
   }
   Color cardColor= Colors.white;
-  Color textColor = Colors.black;
+  Color textColor = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       child: GridView.count(
         primary: true,
         crossAxisCount: 2,
         childAspectRatio: 0.80,
         children: List.generate(bagsData.length, (index){
           return Container(
+            color: Colors.white,
             padding: EdgeInsets.only(top: 10.0),
             child: Material(
               child: InkWell(
